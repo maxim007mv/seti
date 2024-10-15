@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<div home-navbar></div>
+<div home-sidebar></div>
+<div class="container-fluid content" id="content" ng-click="hidemenu()">
+	  <div class="container-fluid" ng-switch on="selection">
+	      <div class="" ng-switch-when="trend">Welcome {{name}}</div>
+	      <div class="" ng-switch-when="news"><div news-feed></div></div>
+	      <div class="" ng-switch-when="ecommerce">Ecommerce module</div>
+	      <div class="" ng-switch-when="quora">question and seek answers</div>
+	      <div class="" ng-switch-when="debate">Debates</div>
+	      <div class="" ng-switch-default>default</div>
+	  </div>
+	  <td>selection={{selection}}</td>
+</div>

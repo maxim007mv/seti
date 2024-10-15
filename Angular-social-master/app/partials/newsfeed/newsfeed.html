@@ -1,0 +1,37 @@
+<div class="newsfeed container-fluid" ng-app="myApp.home.newsfeed">
+	<div class="row">
+		<div class="col-lg-10 col-lg-push-1">
+			
+			<div status-update></div>
+			<hr>
+
+         	<div class="post-wrap" >  
+                <div class="post container-fluid" ng-repeat="post in posts |  orderBy:post.date:reverse | limitTo:10">
+                    <div class="postcontent" >
+                        <div class="row">
+                            <div class="col-lg-1"><img src="{{post.img_thumb}}" class="img-circle" width="50px" height="50px" /></div>
+                            <div class="container-fluid col-lg-11"><h2 style="margin-top:10px;line-height:0.9;padding:5px;">{{post.title}}   <small>{{post.date | date}} </small></h2></div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-11 col-lg-push-1">
+	                            <h4>{{post.subtitle}}</h4>
+	                            <p>{{post.content}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="likebar">    
+                        <ul style="list-style-type:none;">
+                            <li><a>Upvote</a></li>
+                            <li><a>Downvote</a></li>
+                            <li><a>Share</a></li>  
+                        </ul>
+                    </div>    
+    
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+   

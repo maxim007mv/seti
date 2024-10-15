@@ -1,0 +1,101 @@
+
+<div class="alert alert-success message-animation" role="alert" ng-if="ctrl.showSubmittedPrompt">
+                Thank you! Your account has been created.
+</div>
+<form class="col-lg-6 col-lg-push-3" name="ctrl.signupForm" novalidate>
+    <div class="row container-fluid" style="margin-bottom:15px;">
+        <div class="col-lg-6">
+            <button class="btn btn-block btn-social btn-facebook" ng-click="loginfb()">
+            <i class="fa fa-facebook"></i> Sign in with Facebook
+            </button>
+        </div>
+        <div class="col-lg-6">
+            <button class="btn btn-block btn-social btn-google-plus" ng-click="share()">
+            <i class="fa fa-google-plus"></i> Sign in with Google
+            </button>
+        </div>
+    </div>
+    <hr/>
+    <legend>Sign up</legend>
+        <div class="form-group" ng-class="{'has-error':ctrl.hasErrorClass('email')}">
+            <label for="email">Email</label>
+            <input id="email" name="email" class="form-control" type="email" required 
+                    ng-model="newCustomer.email" 
+                    ng-model-options="{ updateOn : 'default blur' }" 
+                    ng-focus="ctrl.toggleEmailPrompt(true)" 
+                    ng-blur="ctrl.toggleEmailPrompt(false)"/>
+
+            <div class="my-messages">
+                 <div class="prompt message-animation" ng-if="ctrl.showEmailPrompt">
+                            What's your email address?
+                 </div>
+            </div>
+
+                    <div class="my-messages" ng-messages="ctrl.signupForm.email.$error" ng-if="ctrl.showMessages('email')">
+                        <div class="message-animation" ng-message="required">
+                            <strong>This field is required.</strong>
+                        </div>
+                        <div class="message-animation" ng-message="email">
+                            <strong>Please format your email correctly.</strong>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group" ng-class="{'has-error':ctrl.hasErrorClass('userName')}">
+                    <label for="userName">Username</label>
+                    <input id="userName" name="userName" class="form-control" type="text" required
+                           ng-model="newCustomer.name" ng-model-options="{ updateOn : 'default blur' }"
+                           ng-focus="ctrl.toggleUsernamePrompt(true)" ng-blur="ctrl.toggleUsernamePrompt(false)"/>
+
+                    <div class="my-messages">
+                        <div class="prompt message-animation" ng-if="ctrl.showUsernamePrompt">
+                            Choose a username that contains only letters and numbers, or use your email address.
+                        </div>
+                    </div>
+
+                    <div class="my-messages" ng-messages="ctrl.signupForm.userName.$error" ng-if="ctrl.showMessages('userName')">
+                        <div class="message-animation" ng-message="required">
+                            <strong>This field is required.</strong>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="input-group" ng-class="{'has-error':ctrl.hasErrorClass('password')}">
+                        <input id="password" name="password" class="form-control" required
+                               type="{{ctrl.getPasswordType()}}"
+                               ng-model-options="{ updateOn : 'default blur' }"
+                               ng-model="newCustomer.password"
+                               validate-password-characters/>
+                        <span class="input-group-addon">
+                            <input type="checkbox" ng-model="ctrl.signupForm.showPassword"> Show
+                        </span>
+                    </div>
+
+                    <div class="my-messages" ng-messages="ctrl.signupForm.password.$error" ng-if="ctrl.showMessages('password')">
+                        <div class="message-animation" ng-message="required">
+                            <strong>This field is required.</strong>
+                        </div>
+                    </div>
+
+                    <div class="password-requirements" ng-if="!ctrl.signupForm.password.$valid" >
+                        <ul >
+                            <li ng-class="{'completed':!ctrl.signupForm.password.$error.lowerCase}">One lowercase character</li>
+                            <li ng-class="{'completed':!ctrl.signupForm.password.$error.upperCase}">One uppercase character</li>
+                        </ul>
+                        <ul >
+                            <li ng-class="{'completed':!ctrl.signupForm.password.$error.number}">One number</li>
+                       <!-- <li ng-class="{'completed':!ctrl.signupForm.password.$error.specialCharacter}">One special character</li>   -->
+                            <li ng-class="{'completed':!ctrl.signupForm.password.$error.eightCharacters}">Eight characters minimum</li>  
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-success message-animation" role="alert" ng-if="ctrl.signupForm.password.$valid">
+                        Your password is secure and you are good to go!
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit" data-ng-disabled="ctrl.signupForm.$invalid" ng-click="signup(newCustomer)">Create My Account</button>
+            </form>
